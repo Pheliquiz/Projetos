@@ -1,0 +1,29 @@
+# O arquivo funciona entrando na pasta por meio da biblioteca Os:
+import os
+
+# É necessário indicar o local:
+caminho_pasta = str(input('Digite o caminho: '))
+# ou
+caminho_pasta = r"C:\Users\2015a"
+
+# Indicar a pasta para o Os trabalhar:
+os.chdir(caminho_pasta)
+# os.chdir troca o diretório no qual o python vai trabalhar
+
+# Criar um laço para cada item da lista (dentro da pasta)
+for f in os.listdir():
+    # os.path.splitext vai separar o nome da extensão do arquivo "nome.mp4", "nome2.ts"
+    
+    file_name, f_ext = os.path.splitext(f) # --- pode printar pra saber como funciona
+    
+    # Essa etapa vai depender da estrutura do nome dos arquivos, os meus estavam dividos por "-" e eu queria tirar a primeira parte e a ultima
+    
+    f_hot, f_num, f_nome, f_hd = file_name.split('-')
+
+    f_num = f_num.strip()
+    f_nome = f_nome.strip()
+    f_ext = f_ext.strip()
+
+    new_name = (f'{f_num}-{f_nome}{f_ext}')
+
+    os.rename(f, new_name)
